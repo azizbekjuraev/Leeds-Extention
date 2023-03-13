@@ -4,11 +4,9 @@ let myLeads = [];
 let oldLeads = [];
 const collectedLinks = document.querySelector(`#collected-links`);
 const inputEl = document.getElementById("input-el");
-const inputBtn = document.getElementById("input-btn");
 const ulEl = document.getElementById("ul-el");
-const deleteBtn = document.getElementById("delete-btn");
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem(`myLeads`));
-const tabBtn = document.getElementById("tab-btn");
+// const tabBtn = document.getElementById("tab-btn");
 //const inputName = document.getElementById("input-name");
 
 if (leadsFromLocalStorage) {
@@ -22,10 +20,13 @@ function render(leads) {
 
   for (let i = 0; i < leads.length; i++) {
     listItems += `
-        <li>
-        ${(countNum += 1)} <a target='_blank' href='${leads[i]}'>${leads[i]}
+    <div class="list-div">
+        <li class="link-li-el">
+        ${(countNum += 1)}) <a target='_blank' href='${leads[i]}'>${leads[i]}
         </a>
         </li>
+        <button>DELETE</button>
+        </div>
         `;
   }
 
@@ -50,18 +51,25 @@ inputEl.addEventListener(`keyup`, () => {
 });
 
 // save btn
-inputBtn.addEventListener("click", function () {
+$("#input-btn").click(function () {
   myLeads.push(inputEl.value);
   inputEl.value = "";
   if (inputEl.value === "") {
     disableBtn();
   }
-  localStorage.setItem(`myLeads`, JSON.stringify(myLeads));
+  localStorage.setItem("myLeads", JSON.stringify(myLeads));
   render(myLeads);
 });
 
 // tab btn
-tabBtn.addEventListener("click", () => {
+// tabBtn.addEventListener("click", () => {
+//   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+//     myLeads.push(tabs[0].url);
+//     localStorage.setItem("myLeads", JSON.stringify(myLeads));
+//     render(myLeads);
+//   });
+// });
+$("#tab-btn").click(function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     myLeads.push(tabs[0].url);
     localStorage.setItem("myLeads", JSON.stringify(myLeads));
@@ -69,12 +77,11 @@ tabBtn.addEventListener("click", () => {
   });
 });
 
-// render() <----!
 //Delete btn
-deleteBtn.addEventListener("click", () => {
+$("#delete-btn").click(function () {
   localStorage.clear();
   myLeads = [];
   render(myLeads);
-  collectedLinks.textContent = `You have collected:`;
+  collectedLinks.textContent = `You have no collected links yet:`;
   document.getElementById("input-btn").disabled = true;
 });

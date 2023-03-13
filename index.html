@@ -17,12 +17,17 @@
       id="input-el"
       placeholder="Paste your link...(optional)"
     />
-    <button id="input-btn">SAVE INPUT</button>
-    <button id="tab-btn">SAVE TAB</button>
-    <button id="delete-btn">DELETE ALL</button>
-    <ul id="ul-el"></ul>
-    <p id="collected-links">You have collected:</p>
+    <div class="buttons">
+      <button id="input-btn">SAVE INPUT</button>
+      <button id="tab-btn">SAVE TAB</button>
+      <button id="delete-btn">DELETE ALL</button>
+    </div>
 
+    <p id="collected-links">
+      You have no <span class="color">collected</span> links yet:
+    </p>
+    <ul id="ul-el"></ul>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

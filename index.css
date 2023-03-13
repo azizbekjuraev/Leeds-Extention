@@ -33,10 +33,19 @@ ul {
   padding-left: 0;
 }
 
-li {
-  margin-top: 5px;
-}
-
 a {
   color: #5f9341;
+}
+
+.link-li-el {
+  width: 28%;
+  padding: 1rem 0 1rem 10px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+.list-div {
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1rem;
 }
